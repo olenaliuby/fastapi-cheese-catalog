@@ -26,6 +26,6 @@ class DBCheese(Base):
     title = Column(String(255), nullable=False)
     price = Column(Integer, nullable=False)
     package_type = Column(Enum(PackagingType), nullable=False)
-    cheese_type_id = Column(Integer, ForeignKey("cheese_type_id"), nullable=False)
+    cheese_type_id = Column(Integer, ForeignKey("cheese_type.id"), nullable=False)
 
     cheese_type = relationship("DBCheeseType", back_populates="cheese")
