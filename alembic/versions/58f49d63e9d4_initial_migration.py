@@ -1,8 +1,8 @@
 """Initial migration
 
-Revision ID: 049ac2066dcd
-Revises: 272b7606d79f
-Create Date: 2023-12-19 20:14:28.527478
+Revision ID: 58f49d63e9d4
+Revises: 
+Create Date: 2023-12-19 22:11:17.200156
 
 """
 from typing import Sequence, Union
@@ -12,7 +12,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision: str = '049ac2066dcd'
+revision: str = '58f49d63e9d4'
 down_revision: Union[str, None] = None
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
@@ -32,8 +32,8 @@ def upgrade() -> None:
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('title', sa.String(length=255), nullable=False),
     sa.Column('price', sa.Integer(), nullable=False),
-    sa.Column('package_type', sa.Enum('IN_PACKAGE', 'WEIGHT', name='packagingtype'), nullable=False),
-    sa.Column('cheese_type_id', sa.Integer(), nullable=False),
+    sa.Column('packaging_type', sa.Enum('IN_PACKAGE', 'WEIGHT', name='packagingtype'), nullable=False),
+    sa.Column('cheese_type_id', sa.Integer(), nullable=True),
     sa.ForeignKeyConstraint(['cheese_type_id'], ['cheese_type.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
