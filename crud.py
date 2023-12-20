@@ -8,6 +8,12 @@ def get_all_cheese_types(db: Session):
     return db.query(models.DBCheeseType).all()
 
 
+def get_cheese_type_by_name(db: Session, name: str):
+    return db.query(models.DBCheeseType).filter(
+        models.DBCheeseType.name == name
+    ).first()
+
+
 def create_cheese_type(db: Session, cheese_type: CheeseTypeCreate):
     db_cheese_type = models.DBCheeseType(
         name=cheese_type.name, description=cheese_type.description

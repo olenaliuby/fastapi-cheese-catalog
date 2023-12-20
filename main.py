@@ -32,4 +32,12 @@ def create_cheese_type(
         cheese_type: schemas.CheeseTypeCreate,
         db: Session = Depends(get_db)
 ):
+    db_cheese_type = crud.get_cheese_type_by_name(db=db, name=cheese_type.name)
+
+    if db_cheese_type is not None:
+        raise HTTPException(
+            status_code=400,
+            detail="Cheese type with this name already exists"
+        )
+
     return crud.create_cheese_type(db=db, cheese_type=cheese_type)
